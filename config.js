@@ -1,5 +1,8 @@
 const { schema, imports, dependencies, environment, expressions, endpoints } = program;
 
+environment
+  .add('API_TOKEN', 'The Api Token')
+
 schema.type('Root')
   .field('sites', 'SiteCollection')
 
