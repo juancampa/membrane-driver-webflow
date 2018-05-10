@@ -1,6 +1,8 @@
 {
-  "name": "membrane-driver-webflow",
+  "name": "webflow",
   "version": "1",
-  "dependencies": {},
+  "dependencies": {
+    "webflow-api": "^0.4.1"
+  },
   "license": "MIT"
 }

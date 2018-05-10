@@ -1,14 +1,46 @@
-const { root } = program.refs
+const { root } = program.refs;
+import { webflow } from './client';
 
 export async function init() {
-  // Called when the program is run
+  await root.set({
+    sites: {},
+  });
 }
 
-export async function update() {
-  // Called when the program is updated from a previous version
-}
+export const SiteCollection = {
+  async one({ args }) {
+    return webflow.sites({ siteId: args.id });
+  },
 
-export async function timer({ key }) {
-  // Called every time a timer fires
-}
+  async items() {
+    return webflow.sites();
+  },
+};
 
+export const Site = {
+  async self({ source }) {
+    return root.sites.one({ id: source.id });
+  },
+  domains() {
+    return {};
+  },
+};
+
+export const DomainCollection = {
+  async one({ args, self }) {
+    const { _id: siteId } = self.match(root.sites.one());
+    const domains = await webflow.domains({ siteId: siteId });
+    return domains.find(d => d.id === args.id);
+  },
+
+  async items({ source }) {
+    const { _id: siteId } = self.match(root.sites.one());
+    return webflow.domains({ siteId: siteId });
+  },
+};
+
+export const Domain = {
+  async self() {
+    // TODO
+  },
+};
