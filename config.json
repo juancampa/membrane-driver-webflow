@@ -102,6 +102,10 @@
       "name": "domains",
       "type": "DomainCollection",
       "description": "List of all custom domains added to the given site"
+     },
+     {
+      "name": "collections",
+      "type": "CollectionCollection"
      }
     ],
     "actions": [],
@@ -153,6 +157,82 @@
       "ofType": {
        "type": "Domain"
       }
+     }
+    ],
+    "actions": [],
+    "events": []
+   },
+   {
+    "name": "CollectionCollection",
+    "fields": [],
+    "computedFields": [
+     {
+      "name": "one",
+      "type": "Collection",
+      "params": [
+       {
+        "name": "id",
+        "type": "String"
+       }
+      ]
+     },
+     {
+      "name": "items",
+      "type": "List",
+      "ofType": {
+       "type": "Collection"
+      }
+     }
+    ],
+    "actions": [],
+    "events": []
+   },
+   {
+    "name": "Collection",
+    "fields": [
+     {
+      "name": "_id",
+      "type": "String",
+      "description": "The unique identifier for the Collection"
+     },
+     {
+      "name": "lastUpdated",
+      "type": "String",
+      "description": "Collection was last updated"
+     },
+     {
+      "name": "createdOn",
+      "type": "String",
+      "description": "Collection was created"
+     },
+     {
+      "name": "name",
+      "type": "String",
+      "description": "Name given to Collection"
+     },
+     {
+      "name": "slug",
+      "type": "String",
+      "description": "Slug of Collection in Site URL structure"
+     },
+     {
+      "name": "singularName",
+      "type": "String",
+      "description": "The name of one Item in Collection"
+     }
+    ],
+    "computedFields": [
+     {
+      "name": "self",
+      "type": "Ref",
+      "ofType": {
+       "type": "Collection"
+      }
+     },
+     {
+      "name": "fields",
+      "type": "String",
+      "description": "See full Fields section"
      }
     ],
     "actions": [],

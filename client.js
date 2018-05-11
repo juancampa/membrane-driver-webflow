@@ -5,4 +5,4 @@ if (!API_TOKEN) {
 
 import Webflow from 'webflow-api';
 
-export const webflow = new Webflow({ token: 'API_TOKEN' });
+export const webflow = new Webflow({ token: API_TOKEN });
