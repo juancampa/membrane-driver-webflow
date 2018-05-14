@@ -51,11 +51,6 @@
     "name": "Site",
     "fields": [
      {
-      "name": "_id",
-      "type": "String",
-      "description": "Unique identifier for site"
-     },
-     {
       "name": "createdOn",
       "type": "String",
       "description": "Date the site was created"
@@ -99,6 +94,11 @@
       }
      },
      {
+      "name": "id",
+      "type": "String",
+      "description": "Unique identifier for site"
+     },
+     {
       "name": "domains",
       "type": "DomainCollection",
       "description": "List of all custom domains added to the given site"
@@ -140,11 +140,6 @@
     "name": "Domain",
     "fields": [
      {
-      "name": "_id",
-      "type": "String",
-      "description": "Unique identifier for site"
-     },
-     {
       "name": "name",
       "type": "String",
       "description": "The domain name"
@@ -157,6 +152,11 @@
       "ofType": {
        "type": "Domain"
       }
+     },
+     {
+      "name": "id",
+      "type": "String",
+      "description": "Unique identifier for site"
      }
     ],
     "actions": [],
@@ -190,11 +190,6 @@
    {
     "name": "Collection",
     "fields": [
-     {
-      "name": "_id",
-      "type": "String",
-      "description": "The unique identifier for the Collection"
-     },
      {
       "name": "lastUpdated",
       "type": "String",
@@ -230,11 +225,182 @@
       }
      },
      {
+      "name": "id",
+      "type": "String",
+      "description": "The unique identifier for the Collection"
+     },
+     {
       "name": "fields",
       "type": "String",
       "description": "See full Fields section"
+     },
+     {
+      "name": "itemsPage",
+      "type": "ItemsPage",
+      "params": [
+       {
+        "name": "offset",
+        "type": "Int"
+       },
+       {
+        "name": "limit",
+        "type": "Int"
+       }
+      ]
      }
     ],
+    "actions": [],
+    "events": []
+   },
+   {
+    "name": "ItemsPage",
+    "fields": [],
+    "computedFields": [
+     {
+      "name": "items",
+      "type": "ItemsCollections"
+     },
+     {
+      "name": "next",
+      "type": "Ref",
+      "ofType": {
+       "type": "ItemsPage"
+      }
+     }
+    ],
+    "actions": [],
+    "events": []
+   },
+   {
+    "name": "ItemsCollection",
+    "fields": [],
+    "computedFields": [
+     {
+      "name": "one",
+      "type": "Item",
+      "params": [
+       {
+        "name": "id",
+        "type": "String"
+       }
+      ]
+     },
+     {
+      "name": "items",
+      "type": "List",
+      "ofType": {
+       "type": "Item"
+      }
+     }
+    ],
+    "actions": [],
+    "events": []
+   },
+   {
+    "name": "Item",
+    "fields": [
+     {
+      "name": "color",
+      "type": "String"
+     },
+     {
+      "name": "featured",
+      "type": "String"
+     },
+     {
+      "name": "name",
+      "type": "String"
+     },
+     {
+      "name": "slug",
+      "type": "String"
+     },
+     {
+      "name": "author",
+      "type": "String"
+     }
+    ],
+    "computedFields": [
+     {
+      "name": "self",
+      "type": "Ref",
+      "ofType": {
+       "type": "Item"
+      }
+     },
+     {
+      "name": "id",
+      "type": "String"
+     },
+     {
+      "name": "archived",
+      "type": "String"
+     },
+     {
+      "name": "draft",
+      "type": "String"
+     },
+     {
+      "name": "postBody",
+      "type": "String"
+     },
+     {
+      "name": "postSummary",
+      "type": "String"
+     },
+     {
+      "name": "updatedOn",
+      "type": "String"
+     },
+     {
+      "name": "updatedBy",
+      "type": "String"
+     },
+     {
+      "name": "createdOn",
+      "type": "String"
+     },
+     {
+      "name": "createdBy",
+      "type": "String"
+     },
+     {
+      "name": "publishedOn",
+      "type": "String"
+     },
+     {
+      "name": "publishedBy",
+      "type": "String"
+     },
+     {
+      "name": "cid",
+      "type": "String"
+     },
+     {
+      "name": "thumbnailImage",
+      "type": "ImageSource"
+     },
+     {
+      "name": "mainImage",
+      "type": "ImageSource"
+     }
+    ],
+    "actions": [],
+    "events": []
+   },
+   {
+    "name": "ImageSource",
+    "fields": [
+     {
+      "name": "fileId",
+      "type": "String"
+     },
+     {
+      "name": "url",
+      "type": "String"
+     }
+    ],
+    "computedFields": [],
     "actions": [],
     "events": []
    }

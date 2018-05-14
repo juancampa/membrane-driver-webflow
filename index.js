@@ -22,6 +22,9 @@ export const Site = {
   async self({ source }) {
     return root.sites.one({ id: source._id });
   },
+  id({ source }) {
+    return source['_id'];
+  },
   domains() {
     return {};
   },
@@ -47,6 +50,9 @@ export const Domain = {
   async self() {
     // return root.sites.one({siteId: }).domains().one({ id: })
   },
+  id({ source }) {
+    return source['_id'];
+  },
 };
 
 export const CollectionCollection = {
@@ -62,6 +68,9 @@ export const CollectionCollection = {
 export const Collection = {
   async self() {
     // return root.sites.one({siteId: }).domains().one({ id: })
+  },
+  id({ source }) {
+    return source['_id'];
   },
   fields({ source }) {
     return JSON.stringify(source.fields);
@@ -106,7 +115,7 @@ export const ItemsCollection = {
     const { id: collectionId } = self.match(root.sites.one().collections.one());
     return webflow.item({ collectionId: collectionId, itemId: args.id });
   },
-  items({source}) {
+  items({ source }) {
     return source;
   },
 };
@@ -115,5 +124,47 @@ export const Item = {
   async self() {
     // TODO
     //return
+  },
+  id({ source }) {
+    return source['_id'];
+  },
+  archived({ source }) {
+    return source['_archived'];
+  },
+  draft({ source }) {
+    return source['_draft'];
+  },
+  postBody({ source }) {
+    return source['post-body'];
+  },
+  postSummary({ source }) {
+    return source['post-summary'];
+  },
+  updatedOn({ source }) {
+    return source['updated-on'];
+  },
+  updatedBy({ source }) {
+    return source['updated-by'];
+  },
+  createdOn({ source }) {
+    return source['created-on'];
+  },
+  createdBy({ source }) {
+    return source['created-by'];
+  },
+  publishedOn({ source }) {
+    return source['published-on'];
+  },
+  publishedBy({ source }) {
+    return source['published-by'];
+  },
+  cid({ source }) {
+    return source['_cid'];
+  },
+  thumbnailImage({ source }) {
+    return source['thumbnail-image'];
+  },
+  mainImage({ source }) {
+    return source['main-image'];
   },
 };
