@@ -29,6 +29,7 @@
      {
       "name": "one",
       "type": "Site",
+      "description": "A Webflow site",
       "params": [
        {
         "name": "id",
@@ -41,7 +42,8 @@
       "type": "List",
       "ofType": {
        "type": "Site"
-      }
+      },
+      "description": "List of all sites the provided access token is able to access."
      }
     ],
     "actions": [],
@@ -105,7 +107,8 @@
      },
      {
       "name": "collections",
-      "type": "CollectionCollection"
+      "type": "CollectionCollection",
+      "description": "Groupings of Items and define the schema or structure of the custom data stored in those Items"
      }
     ],
     "actions": [],
@@ -118,6 +121,7 @@
      {
       "name": "one",
       "type": "Domain",
+      "description": "A custom domain",
       "params": [
        {
         "name": "id",
@@ -130,7 +134,8 @@
       "type": "List",
       "ofType": {
        "type": "Domain"
-      }
+      },
+      "description": "All custom domains"
      }
     ],
     "actions": [],
@@ -235,8 +240,30 @@
       "description": "See full Fields section"
      },
      {
-      "name": "itemsPage",
-      "type": "ItemsPage",
+      "name": "items",
+      "type": "ItemCollection"
+     }
+    ],
+    "actions": [],
+    "events": []
+   },
+   {
+    "name": "ItemCollection",
+    "fields": [],
+    "computedFields": [
+     {
+      "name": "one",
+      "type": "Item",
+      "params": [
+       {
+        "name": "id",
+        "type": "String"
+       }
+      ]
+     },
+     {
+      "name": "page",
+      "type": "ItemPage",
       "params": [
        {
         "name": "offset",
@@ -253,43 +280,21 @@
     "events": []
    },
    {
-    "name": "ItemsPage",
+    "name": "ItemPage",
     "fields": [],
     "computedFields": [
-     {
-      "name": "items",
-      "type": "ItemsCollections"
-     },
-     {
-      "name": "next",
-      "type": "Ref",
-      "ofType": {
-       "type": "ItemsPage"
-      }
-     }
-    ],
-    "actions": [],
-    "events": []
-   },
-   {
-    "name": "ItemsCollection",
-    "fields": [],
-    "computedFields": [
-     {
-      "name": "one",
-      "type": "Item",
-      "params": [
-       {
-        "name": "id",
-        "type": "String"
-       }
-      ]
-     },
      {
       "name": "items",
       "type": "List",
       "ofType": {
        "type": "Item"
+      }
+     },
+     {
+      "name": "next",
+      "type": "Ref",
+      "ofType": {
+       "type": "ItemPage"
       }
      }
     ],
@@ -309,11 +314,13 @@
      },
      {
       "name": "name",
-      "type": "String"
+      "type": "String",
+      "description": "Name given to the Item"
      },
      {
       "name": "slug",
-      "type": "String"
+      "type": "String",
+      "description": "URL structure of the Item in your site"
      },
      {
       "name": "author",
@@ -330,15 +337,18 @@
      },
      {
       "name": "id",
-      "type": "String"
+      "type": "String",
+      "description": "Unique identifier for the Item"
      },
      {
       "name": "archived",
-      "type": "String"
+      "type": "Boolean",
+      "description": "Boolean determining if the Item is set to archived"
      },
      {
       "name": "draft",
-      "type": "String"
+      "type": "Boolean",
+      "description": "Boolean determining if the Item is set to draft"
      },
      {
       "name": "postBody",
@@ -350,31 +360,38 @@
      },
      {
       "name": "updatedOn",
-      "type": "String"
+      "type": "String",
+      "description": "Date Item was last updated"
      },
      {
       "name": "updatedBy",
-      "type": "String"
+      "type": "String",
+      "description": "User who made last change to Item"
      },
      {
       "name": "createdOn",
-      "type": "String"
+      "type": "String",
+      "description": "Date Item was created"
      },
      {
       "name": "createdBy",
-      "type": "String"
+      "type": "String",
+      "description": "User who created Item"
      },
      {
       "name": "publishedOn",
-      "type": "String"
+      "type": "String",
+      "description": "Date Item was last published"
      },
      {
       "name": "publishedBy",
-      "type": "String"
+      "type": "String",
+      "description": "User who last published Item"
      },
      {
       "name": "cid",
-      "type": "String"
+      "type": "String",
+      "description": "Unique identifier for the Collection the Item belongs within"
      },
      {
       "name": "thumbnailImage",

@@ -75,13 +75,23 @@ export const Collection = {
   fields({ source }) {
     return JSON.stringify(source.fields);
   },
-  itemsPage({ source, args }) {
-    const items = webflow.items({ collectionId: source._id }, ...args);
+  items() {
+    return {};
+  },
+};
+
+export const ItemCollection = {
+  async one({ args }) {
+    const { id: collectionId } = self.match(root.sites.one().collections.one());
+    return webflow.item({ collectionId: collectionId, itemId: args.id });
+  },
+  async page({ source, args }) {
+    return webflow.items({ collectionId: source._id }, ...args);
   },
 };
 
 export const ItemsPage = {
-  async items() {
+  async items({ source }) {
     return source.items;
   },
   async next({ self, source }) {
@@ -107,16 +117,6 @@ export const ItemsPage = {
       .collections()
       .one((id: collectionId))
       .itemsPage({ ...args, offset: source.offset });
-  },
-};
-
-export const ItemsCollection = {
-  async one({ args }) {
-    const { id: collectionId } = self.match(root.sites.one().collections.one());
-    return webflow.item({ collectionId: collectionId, itemId: args.id });
-  },
-  items({ source }) {
-    return source;
   },
 };
 
