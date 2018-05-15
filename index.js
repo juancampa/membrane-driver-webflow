@@ -136,7 +136,6 @@ export const ItemPage = {
 export const Item = {
   async self({ source, self, parent }) {
     const { _id } = source;
-    console.log('id ' + id);
     if (_id === undefined || _id === null) {
       return null;
     }
@@ -151,7 +150,7 @@ export const Item = {
   id({ source }) {
     return source['_id'];
   },
-  archived({ source }) {
+  fields({ source }) {
     return JSON.stringify(source);
   },
 };

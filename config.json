@@ -325,22 +325,6 @@
     ],
     "actions": [],
     "events": []
-   },
-   {
-    "name": "ImageSource",
-    "fields": [
-     {
-      "name": "fileId",
-      "type": "String"
-     },
-     {
-      "name": "url",
-      "type": "String"
-     }
-    ],
-    "computedFields": [],
-    "actions": [],
-    "events": []
    }
   ]
  },

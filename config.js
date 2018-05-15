@@ -65,8 +65,3 @@ schema.type('Item')
   .computed('self', 'Item*')
   .computed('id', 'String', 'Unique identifier for the Item')
   .computed('fields', 'String', 'All data of the item')
-
-schema.type('ImageSource')
-  .field('fileId', 'String')
-  .field('url', 'String')
-
