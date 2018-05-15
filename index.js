@@ -90,7 +90,7 @@ export const Collection = {
 
 export const ItemCollection = {
   async one({ self, args }) {
-    const { id: collectionId } = self.match(root.sites.one().collections.one());
+    const { id: collectionId } = self.match(root.sites.one().collections().one());
 
     return webflow.item({ collectionId: collectionId, itemId: args.id });
   },
