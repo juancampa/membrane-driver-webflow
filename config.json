@@ -305,14 +305,6 @@
     "name": "Item",
     "fields": [
      {
-      "name": "color",
-      "type": "String"
-     },
-     {
-      "name": "featured",
-      "type": "String"
-     },
-     {
       "name": "name",
       "type": "String",
       "description": "Name given to the Item"
@@ -321,10 +313,6 @@
       "name": "slug",
       "type": "String",
       "description": "URL structure of the Item in your site"
-     },
-     {
-      "name": "author",
-      "type": "String"
      }
     ],
     "computedFields": [
@@ -351,12 +339,9 @@
       "description": "Boolean determining if the Item is set to draft"
      },
      {
-      "name": "postBody",
-      "type": "String"
-     },
-     {
-      "name": "postSummary",
-      "type": "String"
+      "name": "cid",
+      "type": "String",
+      "description": "Unique identifier for the Collection the Item belongs within"
      },
      {
       "name": "updatedOn",
@@ -387,19 +372,6 @@
       "name": "publishedBy",
       "type": "String",
       "description": "User who last published Item"
-     },
-     {
-      "name": "cid",
-      "type": "String",
-      "description": "Unique identifier for the Collection the Item belongs within"
-     },
-     {
-      "name": "thumbnailImage",
-      "type": "ImageSource"
-     },
-     {
-      "name": "mainImage",
-      "type": "ImageSource"
      }
     ],
     "actions": [],

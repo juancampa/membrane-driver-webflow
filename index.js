@@ -47,8 +47,12 @@ export const DomainCollection = {
 };
 
 export const Domain = {
-  async self() {
-    // return root.sites.one({siteId: }).domains().one({ id: })
+  async self({ self, source, parent }) {
+    const { id } = source;
+    if (id === undefined || id === null) {
+      return null;
+    }
+    return self || parent.ref.pop().push('one', { id: id });
   },
   id({ source }) {
     return source['_id'];
@@ -66,8 +70,12 @@ export const CollectionCollection = {
 };
 
 export const Collection = {
-  async self() {
-    // return root.sites.one({siteId: }).domains().one({ id: })
+  async self({source, self, parent}) {
+    const { id } = source;
+    if (id === undefined || id === null) {
+      return null;
+    }
+    return self || parent.ref.pop().push('one', { id: id });
   },
   id({ source }) {
     return source['_id'];
@@ -81,16 +89,23 @@ export const Collection = {
 };
 
 export const ItemCollection = {
-  async one({ args }) {
+  async one({ self, args }) {
     const { id: collectionId } = self.match(root.sites.one().collections.one());
     return webflow.item({ collectionId: collectionId, itemId: args.id });
   },
-  async page({ source, args }) {
-    return webflow.items({ collectionId: source._id }, ...args);
+  async page({ self, args }) {
+    const { id } = self.match(
+      root.sites
+        .one()
+        .collections()
+        .one()
+    );
+    const items = await webflow.items({ collectionId: id });
+    return items;
   },
 };
 
-export const ItemsPage = {
+export const ItemPage = {
   async items({ source }) {
     return source.items;
   },
@@ -113,17 +128,20 @@ export const ItemsPage = {
 
     // prettier format ?
     return root.sites
-      .one((id: siteId))
+      .one({ id: siteId })
       .collections()
-      .one((id: collectionId))
-      .itemsPage({ ...args, offset: source.offset });
+      .one({ id: collectionId })
+      .itemsPage({ args, offset: source.offset });
   },
 };
 
 export const Item = {
-  async self() {
-    // TODO
-    //return
+  async self({ source, self, parent }) {
+        const { id } = source;
+    if (id === undefined || id === null) {
+      return null;
+    }
+    return self || parent.ref.pop().pop().push('one', { id: id });
   },
   id({ source }) {
     return source['_id'];
@@ -133,12 +151,6 @@ export const Item = {
   },
   draft({ source }) {
     return source['_draft'];
-  },
-  postBody({ source }) {
-    return source['post-body'];
-  },
-  postSummary({ source }) {
-    return source['post-summary'];
   },
   updatedOn({ source }) {
     return source['updated-on'];
@@ -160,11 +172,5 @@ export const Item = {
   },
   cid({ source }) {
     return source['_cid'];
-  },
-  thumbnailImage({ source }) {
-    return source['thumbnail-image'];
-  },
-  mainImage({ source }) {
-    return source['main-image'];
   },
 };
