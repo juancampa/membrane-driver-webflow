@@ -117,7 +117,6 @@ export const ItemPage = {
 
     const { id: collectionId } = self.match(root.sites.one().collections.one());
 
-    // prettier format ?
     const args = self.match(
       root.sites
         .one()
@@ -126,7 +125,6 @@ export const ItemPage = {
         .itemsPage()
     );
 
-    // prettier format ?
     return root.sites
       .one({ id: siteId })
       .collections()
@@ -147,30 +145,6 @@ export const Item = {
     return source['_id'];
   },
   archived({ source }) {
-    return source['_archived'];
-  },
-  draft({ source }) {
-    return source['_draft'];
-  },
-  updatedOn({ source }) {
-    return source['updated-on'];
-  },
-  updatedBy({ source }) {
-    return source['updated-by'];
-  },
-  createdOn({ source }) {
-    return source['created-on'];
-  },
-  createdBy({ source }) {
-    return source['created-by'];
-  },
-  publishedOn({ source }) {
-    return source['published-on'];
-  },
-  publishedBy({ source }) {
-    return source['published-by'];
-  },
-  cid({ source }) {
-    return source['_cid'];
+    return JSON.stringify(source);
   },
 };

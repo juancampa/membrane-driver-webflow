@@ -303,18 +303,7 @@
    },
    {
     "name": "Item",
-    "fields": [
-     {
-      "name": "name",
-      "type": "String",
-      "description": "Name given to the Item"
-     },
-     {
-      "name": "slug",
-      "type": "String",
-      "description": "URL structure of the Item in your site"
-     }
-    ],
+    "fields": [],
     "computedFields": [
      {
       "name": "self",
@@ -329,49 +318,9 @@
       "description": "Unique identifier for the Item"
      },
      {
-      "name": "archived",
-      "type": "Boolean",
-      "description": "Boolean determining if the Item is set to archived"
-     },
-     {
-      "name": "draft",
-      "type": "Boolean",
-      "description": "Boolean determining if the Item is set to draft"
-     },
-     {
-      "name": "cid",
+      "name": "fields",
       "type": "String",
-      "description": "Unique identifier for the Collection the Item belongs within"
-     },
-     {
-      "name": "updatedOn",
-      "type": "String",
-      "description": "Date Item was last updated"
-     },
-     {
-      "name": "updatedBy",
-      "type": "String",
-      "description": "User who made last change to Item"
-     },
-     {
-      "name": "createdOn",
-      "type": "String",
-      "description": "Date Item was created"
-     },
-     {
-      "name": "createdBy",
-      "type": "String",
-      "description": "User who created Item"
-     },
-     {
-      "name": "publishedOn",
-      "type": "String",
-      "description": "Date Item was last published"
-     },
-     {
-      "name": "publishedBy",
-      "type": "String",
-      "description": "User who last published Item"
+      "description": "All data of the item"
      }
     ],
     "actions": [],
