@@ -71,11 +71,11 @@ export const CollectionCollection = {
 
 export const Collection = {
   async self({source, self, parent}) {
-    const { id } = source;
-    if (id === undefined || id === null) {
+    const { _id } = source;
+    if (_id === undefined || _id === null) {
       return null;
     }
-    return self || parent.ref.pop().push('one', { id: id });
+    return self || parent.ref.pop().push('one', { id: _id });
   },
   id({ source }) {
     return source['_id'];
