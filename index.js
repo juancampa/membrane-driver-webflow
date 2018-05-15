@@ -48,11 +48,11 @@ export const DomainCollection = {
 
 export const Domain = {
   async self({ self, source, parent }) {
-    const { id } = source;
-    if (id === undefined || id === null) {
+    const { _id } = source;
+    if (_id === undefined || _id === null) {
       return null;
     }
-    return self || parent.ref.pop().push('one', { id: id });
+    return self || parent.ref.pop().push('one', { id: _id });
   },
   id({ source }) {
     return source['_id'];
@@ -70,7 +70,7 @@ export const CollectionCollection = {
 };
 
 export const Collection = {
-  async self({source, self, parent}) {
+  async self({ source, self, parent }) {
     const { _id } = source;
     if (_id === undefined || _id === null) {
       return null;
@@ -135,11 +135,18 @@ export const ItemPage = {
 
 export const Item = {
   async self({ source, self, parent }) {
-        const { id } = source;
-    if (id === undefined || id === null) {
+    const { _id } = source;
+    console.log('id ' + id);
+    if (_id === undefined || _id === null) {
       return null;
     }
-    return self || parent.ref.pop().pop().push('one', { id: id });
+    return (
+      self ||
+      parent.ref
+        .pop()
+        .pop()
+        .push('one', { id: _id })
+    );
   },
   id({ source }) {
     return source['_id'];
