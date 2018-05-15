@@ -91,17 +91,13 @@ export const Collection = {
 export const ItemCollection = {
   async one({ self, args }) {
     const { id: collectionId } = self.match(root.sites.one().collections.one());
+
     return webflow.item({ collectionId: collectionId, itemId: args.id });
   },
   async page({ self, args }) {
-    const { id } = self.match(
-      root.sites
-        .one()
-        .collections()
-        .one()
-    );
-    const items = await webflow.items({ collectionId: id });
-    return items;
+    const { id } = self.match(root.sites.one().collections().one());
+
+    return webflow.items({ collectionId: id }, args);
   },
 };
 
@@ -115,21 +111,10 @@ export const ItemPage = {
     }
     const { id: siteId } = self.match(root.sites.one());
 
-    const { id: collectionId } = self.match(root.sites.one().collections.one());
+    const { id: collectionId } = self.match(root.sites.one().collections().one());
 
-    const args = self.match(
-      root.sites
-        .one()
-        .collections()
-        .one()
-        .itemsPage()
-    );
-
-    return root.sites
-      .one({ id: siteId })
-      .collections()
-      .one({ id: collectionId })
-      .itemsPage({ args, offset: source.offset });
+    const args = self.match(root.sites.one().collections().one().items().page());
+    return root.sites.one({ id: siteId }).collections().one({ id: collectionId }).items().page({ ...args, offset: source.offset });
   },
 };
 
@@ -139,13 +124,7 @@ export const Item = {
     if (_id === undefined || _id === null) {
       return null;
     }
-    return (
-      self ||
-      parent.ref
-        .pop()
-        .pop()
-        .push('one', { id: _id })
-    );
+    return self || parent.ref.pop().pop().push('one', { id: _id });
   },
   id({ source }) {
     return source['_id'];
