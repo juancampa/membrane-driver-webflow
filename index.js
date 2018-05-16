@@ -88,6 +88,16 @@ export const Collection = {
   },
 };
 
+function getNextPageRef(pageRef, response, args) {
+  const {offset, count, total} = response
+
+  if (total > offset +  count) {
+    return pageRef.ref.withArgs({ ...args , offset: offset +  count  });
+  }
+
+  return null
+};
+
 export const ItemCollection = {
   async one({ self, args }) {
     const { id: collectionId } = self.match(root.sites.one().collections().one());
@@ -97,24 +107,11 @@ export const ItemCollection = {
   async page({ self, args }) {
     const { id } = self.match(root.sites.one().collections().one());
 
-    return webflow.items({ collectionId: id }, args);
-  },
-};
-
-export const ItemPage = {
-  async items({ source }) {
-    return source.items;
-  },
-  async next({ self, source }) {
-    if (source.offset === undefined) {
-      return null;
-    }
-    const { id: siteId } = self.match(root.sites.one());
-
-    const { id: collectionId } = self.match(root.sites.one().collections().one());
-
-    const args = self.match(root.sites.one().collections().one().items().page());
-    return root.sites.one({ id: siteId }).collections().one({ id: collectionId }).items().page({ ...args, offset: source.offset });
+    const result = await webflow.items({ collectionId: id }, args);
+    return {
+      items: result.items,
+      next: getNextPageRef(self.page(args), result, args),
+    };
   },
 };
 

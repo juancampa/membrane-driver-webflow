@@ -58,8 +58,8 @@ schema.type('ItemCollection')
       .param('limit','Int')
 
 schema.type('ItemPage')
-  .computed('items', '[Item]')
-  .computed('next', 'ItemPage*')
+  .field('items', '[Item]')
+  .field('next', 'ItemPage*')
 
 schema.type('Item')
   .computed('self', 'Item*')

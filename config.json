@@ -281,8 +281,7 @@
    },
    {
     "name": "ItemPage",
-    "fields": [],
-    "computedFields": [
+    "fields": [
      {
       "name": "items",
       "type": "List",
@@ -298,6 +297,7 @@
       }
      }
     ],
+    "computedFields": [],
     "actions": [],
     "events": []
    },
