@@ -244,7 +244,66 @@
       "type": "ItemCollection"
      }
     ],
-    "actions": [],
+    "actions": [
+     {
+      "name": "createCollectionItem",
+      "type": "Int",
+      "params": [
+       {
+        "name": "fields",
+        "type": "String"
+       }
+      ]
+     },
+     {
+      "name": "createLiveCollectionItem",
+      "type": "Int",
+      "params": [
+       {
+        "name": "fields",
+        "type": "String"
+       }
+      ]
+     },
+     {
+      "name": "updateCollectionItem",
+      "type": "Int",
+      "params": [
+       {
+        "name": "fields",
+        "type": "String"
+       },
+       {
+        "name": "id",
+        "type": "String"
+       }
+      ]
+     },
+     {
+      "name": "updateLiveCollectionItem",
+      "type": "Int",
+      "params": [
+       {
+        "name": "fields",
+        "type": "String"
+       },
+       {
+        "name": "id",
+        "type": "String"
+       }
+      ]
+     },
+     {
+      "name": "removeCollectionItem",
+      "type": "Int",
+      "params": [
+       {
+        "name": "id",
+        "type": "String"
+       }
+      ]
+     }
+    ],
     "events": []
    },
    {

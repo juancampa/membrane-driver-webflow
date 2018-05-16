@@ -86,6 +86,30 @@ export const Collection = {
   items() {
     return {};
   },
+  async createCollectionItem({ args, self }) {
+    const { id } = self.match(root.sites.one().collections().one());
+    const fields = JSON.parse(args.fields)
+    return webflow.createItem({ collectionId: id, fields: fields });
+  },
+  async createLiveCollectionItem({ args, self }) {
+    const { id } = self.match(root.sites.one().collections().one());
+    const fields = JSON.parse(args.fields)
+    return webflow.createItem({ collectionId: id, fields: fields }, { live: true });
+  },
+  async updateCollectionItem({ args, self }) {
+    const { id } = self.match(root.sites.one().collections().one());
+    const fields = JSON.parse(args.fields)
+    return webflow.updateItem({ collectionId: id, itemId: args.id,  fields: fields });
+  },
+  async updateLiveCollectionItem({ args, self }) {
+    const { id } = self.match(root.sites.one().collections().one());
+    const fields = JSON.parse(args.fields)
+    return webflow.updateItem({ collectionId: id, itemId: args.id, fields: fields }, { live: true });
+  },
+  async removeCollectionItem({ args, self }) {
+    const { id } = self.match(root.sites.one().collections().one());
+    return webflow.removeItem({ collectionId: id, itemId: args.id })
+ },
 };
 
 function getNextPageRef(pageRef, response, args) {
