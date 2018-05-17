@@ -109,6 +109,11 @@
       "name": "collections",
       "type": "CollectionCollection",
       "description": "Groupings of Items and define the schema or structure of the custom data stored in those Items"
+     },
+     {
+      "name": "webhooks",
+      "type": "WebhookCollection",
+      "description": "A webhooks collection"
      }
     ],
     "actions": [],
@@ -383,6 +388,113 @@
      }
     ],
     "actions": [],
+    "events": []
+   },
+   {
+    "name": "WebhookCollection",
+    "fields": [],
+    "computedFields": [
+     {
+      "name": "one",
+      "type": "Webhook",
+      "description": "A custom webhook",
+      "params": [
+       {
+        "name": "id",
+        "type": "String"
+       }
+      ]
+     },
+     {
+      "name": "items",
+      "type": "List",
+      "ofType": {
+       "type": "Webhook"
+      },
+      "description": "All custom webhooks"
+     }
+    ],
+    "actions": [],
+    "events": []
+   },
+   {
+    "name": "Webhook",
+    "fields": [
+     {
+      "name": "triggerType",
+      "type": "String",
+      "description": "Which action the webhook is listening for"
+     },
+     {
+      "name": "triggerId",
+      "type": "String",
+      "description": "Unique identifier for trigger"
+     },
+     {
+      "name": "site",
+      "type": "String",
+      "description": "Unique identifier for site"
+     },
+     {
+      "name": "lastUsed",
+      "type": "String",
+      "description": "Date trigger was last used"
+     },
+     {
+      "name": "createdOn",
+      "type": "String",
+      "description": "Date trigger was created"
+     }
+    ],
+    "computedFields": [
+     {
+      "name": "self",
+      "type": "Ref",
+      "ofType": {
+       "type": "Item"
+      }
+     },
+     {
+      "name": "id",
+      "type": "String",
+      "description": "Unique identifier for the Webhook"
+     },
+     {
+      "name": "filter",
+      "type": "String",
+      "description": "See additional docs for specified triggerType on what values can be filtered on"
+     }
+    ],
+    "actions": [
+     {
+      "name": "createWebhook",
+      "type": "Int",
+      "params": [
+       {
+        "name": "triggerType",
+        "type": "String"
+       },
+       {
+        "name": "url",
+        "type": "String"
+       },
+       {
+        "name": "filter",
+        "type": "String"
+       }
+      ]
+     },
+     {
+      "name": "removeWebhook",
+      "type": "Int",
+      "params": [
+       {
+        "name": "id",
+        "type": "String"
+       }
+      ]
+     }
+    ],
     "events": []
    }
   ]

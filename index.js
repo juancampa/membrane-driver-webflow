@@ -8,7 +8,6 @@ export async function init() {
 }
 
 export const SiteCollection = {
-  // UI not resolve
   async one({ args }) {
     return webflow.sites({ siteId: args.id });
   },
@@ -152,5 +151,49 @@ export const Item = {
   },
   fields({ source }) {
     return JSON.stringify(source);
+  },
+};
+
+export const WebhookCollection = {
+  async one({ args }) {
+    const { id } = self.match(root.sites.one());
+
+    return webflow.webhook({ siteId: id , webhookId: args.id });
+  },
+
+  async items() {
+    const { id } = self.match(root.sites.one());
+
+    return webflow.webhooks({ siteId: id });
+  },
+  async createWebhook({ args, self }) {
+    const { id } = self.match(root.sites.one());
+    const { triggerType, url , filter} = args;
+    return webflow.createWebhook({
+      siteId: id,
+      triggerType: triggerType,
+      url: url,
+      filter: filter,
+    });
+  },
+  async removeWebhook({ args, self }) {
+    const { id } = self.match(root.sites.one());
+    return webflow.removeWebhook({ siteId: id, webhookId: args.id })
+  },
+};
+
+export const Webhook= {
+  async self({ source, self, parent }) {
+    const { _id } = source;
+    if (_id === undefined || _id === null) {
+      return null;
+    }
+    return self || parent.ref.pop().push('one', { id: _id });
+  },
+  id({ source }) {
+    return source['_id'];
+  },
+  filter({ source }) {
+    return JSON.stringify(source.filter);
   },
 };
