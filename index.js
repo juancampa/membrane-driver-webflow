@@ -182,7 +182,7 @@ export const WebhookCollection = {
   },
 };
 
-export const Webhook= {
+export const Webhook = {
   async self({ source, self, parent }) {
     const { _id } = source;
     if (_id === undefined || _id === null) {
