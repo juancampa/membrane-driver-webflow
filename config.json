@@ -505,6 +505,10 @@
   {
    "name": "access",
    "description": "The driver can access the Webflow API and retrieve data"
+  },
+  {
+   "name": "webhooks",
+   "description": "The driver can receive webhooks from Webflow"
   }
  ],
  "isDriver": false
