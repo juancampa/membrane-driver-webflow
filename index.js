@@ -20,6 +20,10 @@ export async function test({ name }) {
       }
       break;
     }
+    case 'webhooks': {
+      // TODO
+      return false;
+    }
   }
   return false;
 }
