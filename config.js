@@ -1,7 +1,10 @@
-const { schema, imports, dependencies, environment, expressions, endpoints } = program;
+const { dependencies, endpoints, environment, imports, schema, expressions, tests } = program;
 
 environment
   .add('API_TOKEN', 'The Api Token')
+
+tests
+  .add('access', 'The driver can access the Webflow API and retrieve data')
 
 schema.type('Root')
   .field('sites', 'SiteCollection')

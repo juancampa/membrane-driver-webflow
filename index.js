@@ -7,6 +7,23 @@ export async function init() {
   });
 }
 
+export async function test({ name }) {
+  switch (name) {
+    case 'access': {
+      try {
+        const res = await webflow.info();
+        if (res._id) {
+          return true;
+        }
+      } catch (e) {
+        return false;
+      }
+      break;
+    }
+  }
+  return false;
+}
+
 export const SiteCollection = {
   async one({ args }) {
     return webflow.sites({ siteId: args.id });
