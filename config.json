@@ -6,7 +6,14 @@
    "description": "The Api Token"
   }
  ],
- "endpoints": [],
+ "endpoints": [
+  {
+   "name": "webhooks",
+   "type": "https",
+   "description": "A webhook endpoint",
+   "options": {}
+  }
+ ],
  "schema": {
   "imports": [],
   "types": [

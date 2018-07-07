@@ -7,6 +7,9 @@ tests
   .add('access', 'The driver can access the Webflow API and retrieve data')
   .add('webhooks', 'The driver can receive webhooks from Webflow')
 
+endpoints
+  .https('webhooks', 'A webhook endpoint')
+
 schema.type('Root')
   .field('sites', 'SiteCollection')
 

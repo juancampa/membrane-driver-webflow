@@ -28,6 +28,15 @@ export async function test({ name }) {
   return false;
 }
 
+export async function endpoint({ name, req }) {
+  switch (name) {
+    case 'webhooks': {
+      console.log(req.body)
+      break;
+    }
+  }
+}
+
 export const SiteCollection = {
   async one({ args }) {
     return webflow.sites({ siteId: args.id });
