@@ -1,4 +1,4 @@
-const { dependencies, endpoints, environment, imports, schema, expressions, tests } = program;
+const { dependencies, endpoints, environment, imports, schema, expressions, tests} = program;
 
 environment
   .add('API_TOKEN', 'The Api Token')
@@ -8,7 +8,7 @@ tests
   .add('webhooks', 'The driver can receive webhooks from Webflow')
 
 endpoints
-  .https('webhooks', 'A webhook endpoint')
+  .https('webhooks', 'Webhooks received from Webflow')
 
 schema.type('Root')
   .field('sites', 'SiteCollection')

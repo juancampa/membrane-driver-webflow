@@ -31,7 +31,14 @@ export async function test({ name }) {
 export async function endpoint({ name, req }) {
   switch (name) {
     case 'webhooks': {
-      console.log(req.body)
+      const siteId = req.body.site || null;
+      const event = {
+        name: req.body.name,
+        data: JSON.stringify(req.body.data),
+        site: siteId && root.sites.one({ id: siteId }),
+      }
+
+      siteId && await event.sites.formReceived.dispatch(event);
       break;
     }
   }

@@ -10,7 +10,7 @@
   {
    "name": "webhooks",
    "type": "https",
-   "description": "A webhook endpoint",
+   "description": "Webhooks received from Webflow",
    "options": {}
   }
  ],
@@ -54,7 +54,29 @@
      }
     ],
     "actions": [],
-    "events": []
+    "events": [
+      {
+        "name": "formReceived",
+        "params": [
+          {
+                "name": "name",
+                "type": "String"
+              },
+              {
+                "name": "data",
+                "type": "String"
+              },
+              {
+                "name": "site",
+                "type": "Ref",
+                "ofType": {
+                  "type": "Site"
+                }
+              }
+            ],
+            "type": "Void"
+      }
+    ]
    },
    {
     "name": "Site",
