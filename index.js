@@ -37,8 +37,9 @@ export async function endpoint({ name, req }) {
         data: JSON.stringify(req.body.data),
         site: siteId && root.sites.one({ id: siteId }),
       }
-
-      siteId && await event.sites.formReceived.dispatch(event);
+      if (siteId) {
+        await event.site.formReceived.dispatch(event);
+      }
       break;
     }
   }
