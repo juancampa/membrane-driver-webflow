@@ -54,29 +54,7 @@
      }
     ],
     "actions": [],
-    "events": [
-      {
-        "name": "formReceived",
-        "params": [
-          {
-                "name": "name",
-                "type": "String"
-              },
-              {
-                "name": "data",
-                "type": "String"
-              },
-              {
-                "name": "site",
-                "type": "Ref",
-                "ofType": {
-                  "type": "Site"
-                }
-              }
-            ],
-            "type": "Void"
-      }
-    ]
+    "events": []
    },
    {
     "name": "Site",
@@ -146,7 +124,29 @@
      }
     ],
     "actions": [],
-    "events": []
+    "events": [
+      {
+        "name": "formReceived",
+        "params": [
+          {
+                "name": "name",
+                "type": "String"
+              },
+              {
+                "name": "data",
+                "type": "String"
+              },
+              {
+                "name": "site",
+                "type": "Ref",
+                "ofType": {
+                  "type": "Site"
+                }
+              }
+            ],
+            "type": "Void"
+      }
+    ]
    },
    {
     "name": "DomainCollection",
@@ -487,43 +487,9 @@
       "name": "id",
       "type": "String",
       "description": "Unique identifier for the Webhook"
-     },
-     {
-      "name": "filter",
-      "type": "String",
-      "description": "See additional docs for specified triggerType on what values can be filtered on"
      }
     ],
-    "actions": [
-     {
-      "name": "createWebhook",
-      "type": "Int",
-      "params": [
-       {
-        "name": "triggerType",
-        "type": "String"
-       },
-       {
-        "name": "url",
-        "type": "String"
-       },
-       {
-        "name": "filter",
-        "type": "String"
-       }
-      ]
-     },
-     {
-      "name": "removeWebhook",
-      "type": "Int",
-      "params": [
-       {
-        "name": "id",
-        "type": "String"
-       }
-      ]
-     }
-    ],
+    "actions": [],
     "events": []
    }
   ]
