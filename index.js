@@ -68,6 +68,25 @@ export const Site = {
   collections() {
     return {};
   },
+  webhooks() {
+    return {};
+  },
+  formReceived: {
+    subscribe({ self }) {
+      const { id } = self.match(root.sites.one());
+
+      // https://developers.webflow.com/#trigger-types
+      return webflow.createWebhook({
+        siteId: id,
+        triggerType: 'form_submission',
+        url: `${program.endpoints.webhooks.url}`,
+      });
+    },
+    unsubscribe({ self , args }) {     
+      const { id } = self.match(root.sites.one());
+      return webflow.removeWebhook({ siteId: id, webhookId: args.id })
+    }
+  },
 };
 
 export const DomainCollection = {
@@ -193,30 +212,16 @@ export const Item = {
 };
 
 export const WebhookCollection = {
-  async one({ args }) {
-    const { id } = self.match(root.sites.one());
+  async one({ args ,self}) {
+    const { id: siteId } = self.match(root.sites.one());
 
-    return webflow.webhook({ siteId: id , webhookId: args.id });
+    return webflow.webhook({ siteId: siteId , webhookId: args.id });
   },
 
-  async items() {
-    const { id } = self.match(root.sites.one());
+  async items({ self }) {
+    const { id: siteId } = self.match(root.sites.one());
 
-    return webflow.webhooks({ siteId: id });
-  },
-  async createWebhook({ args, self }) {
-    const { id } = self.match(root.sites.one());
-    const { triggerType, url , filter} = args;
-    return webflow.createWebhook({
-      siteId: id,
-      triggerType: triggerType,
-      url: url,
-      filter: filter,
-    });
-  },
-  async removeWebhook({ args, self }) {
-    const { id } = self.match(root.sites.one());
-    return webflow.removeWebhook({ siteId: id, webhookId: args.id })
+    return webflow.webhooks({ siteId: siteId });
   },
 };
 
@@ -230,8 +235,5 @@ export const Webhook = {
   },
   id({ source }) {
     return source['_id'];
-  },
-  filter({ source }) {
-    return JSON.stringify(source.filter);
   },
 };
