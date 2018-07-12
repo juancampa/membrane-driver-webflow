@@ -232,7 +232,8 @@ export const Webhook = {
     if (_id === undefined || _id === null) {
       return null;
     }
-    return self || parent.ref.pop().push('one', { id: _id });
+    return parent.parent.one({ id: _id })
+    //return self || parent.ref.pop().push('one', { id: _id });
   },
   id({ source }) {
     return source['_id'];
